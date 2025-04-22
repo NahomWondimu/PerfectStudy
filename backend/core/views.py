@@ -16,7 +16,7 @@ def getGeminiResponse():
     questions = []
     answers = []
 
-    API_KEY = "AIzaSyC4Pv3TTv5D5hJXc2ilutfYqi_V5yqhmmA"
+    API_KEY = ""
     client = genai.Client(api_key=API_KEY)
     
     response = client.models.generate_content(
