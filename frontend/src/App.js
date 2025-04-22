@@ -9,10 +9,6 @@ function App() {
           <h1 className="header">PerfectStudy</h1>
           
         </div>
-
-      
-
-
     </>
     
   );
