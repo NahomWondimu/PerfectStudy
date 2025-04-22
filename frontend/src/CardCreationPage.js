@@ -1,0 +1,8 @@
+
+function CardCreationPage(){
+
+    return(
+        <>
+        </>
+    );
+}

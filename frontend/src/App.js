@@ -6,14 +6,14 @@ function App() {
     <>
         <div className="center">
           <h1 className="header">PerfectStudy</h1>
-          <h2>TO DO: PAGES</h2>
-          <ul>
-            <il>Home Landing Page</il>
-            <il>Card Creation Page</il>
-            <il>QR Code page</il>
-            <il>FlashCard prompt page</il>
-            <il>FlashCard answer page</il>
-          </ul>
+          <h2 className = "App-print">TO DO: PAGES</h2>
+          <ol className = "App-print">
+            <li>Home Landing Page</li>
+            <li>Card Creation Page</li>
+            <li>QR Code page</li>
+            <li>FlashCard prompt page</li>
+            <li>FlashCard answer page</li>
+          </ol>
         </div>
     </>
   );
