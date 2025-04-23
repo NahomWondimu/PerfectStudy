@@ -1,8 +1,0 @@
-
-function GenCards(){
-
-    return(
-        <>
-        </>
-    );
-}

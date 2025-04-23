@@ -1,19 +1,16 @@
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import GenCards from './pages/GenCards';
 
 function App() {
   return (
     <>
-        <div className="center">
-          <h1 className="header">PerfectStudy</h1>
-          <h2 className = "App-print">TO DO: PAGES</h2>
-          <ol className = "App-print">
-            <li>Home Landing Page</li>
-            <li>Card Creation Page</li>
-            <li>QR Code page</li>
-            <li>FlashCard prompt page</li>
-            <li>FlashCard answer page</li>
-          </ol>
-        </div>
+      <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/gen" element={<GenCards />} />
+      </Routes>
+    </Router>
     </>
   );
 }
