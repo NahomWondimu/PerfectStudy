@@ -3,31 +3,53 @@ import Card from "../pages/Card";
 
 function FlashCardView(){
 
-    const example = ["apple","orange","sulfur","CO2"];
+    const flashcards = [
+        {
+          question: "What is the capital of France?",
+          answer: "Paris"
+        },
+        {
+          question: "What is 2 + 2?",
+          answer: "4"
+        },
+        {
+          question: "What is the chemical symbol for water?",
+          answer: "H₂O"
+        },
+        {
+          question: "Who wrote 'Romeo and Juliet'?",
+          answer: "William Shakespeare"
+        }
+    ];
+
+    const questions = flashcards.map(card => card.question);
+    const answers = flashcards.map(card => card.answer);
 
     const [counter, setCounter] = useState(0);
 
-    const increment = () =>{
-        setCounter(counter + 1);
+    const [flip, setFlip] = useState(true);
+
+    const flipCard = () => {
+        setFlip(!flip);
     }
 
-    const decrement = () =>{
-        setCounter(counter - 1);
-    }
-
-    //const [flip, setFlip] = useState(true);
-
-    //const flipCard = () => {
-    //    setFlip(!flip);
-    //}
-
-    /*
-        TO DO:
-        -find out how to input and process json data
-        conditional render this element in homepage
-        -use conditional rendering a usestate hook to file through cards
-    
-    */
+    const increment = () => {
+        if (counter < flashcards.length - 1) {
+          setCounter(counter + 1);
+        }
+        if(!flip){
+            flipCard();
+        }
+    };
+      
+    const decrement = () => {
+        if (counter > 0) {
+          setCounter(counter - 1);
+        }
+        if(!flip){
+            flipCard();
+        }
+    };
 
     const viewStyle = {
         width: '500px',
@@ -43,7 +65,12 @@ function FlashCardView(){
                 <button onClick={decrement}>
                     prev
                 </button>
-                <Card name={example[counter]}></Card>
+                <button onClick={flipCard}>
+                    flip
+                </button>
+                {
+                    flip?<Card name={questions[counter]}/>:<Card name={answers[counter]}/>
+                }
 
             </div>
 
