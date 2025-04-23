@@ -1,13 +1,20 @@
+import TopBar from './TopBar.js';
+import NavBar from './NavBar.js';
 
 function GenCards(){
 
-    const pstyle = {
-        color: 'white'
+    const homepageStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start'
     };
 
     return(
         <>
-        <p style = {pstyle}>i hate myself</p>
+        <div style = {homepageStyle}>
+          <TopBar name='Generate FlashCards'/>
+          <NavBar/>
+        </div>
         </>
     );
 }

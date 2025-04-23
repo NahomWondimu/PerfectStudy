@@ -24,7 +24,9 @@ function NavBar(){
     return(
         <>
         <div style = {box2Style}>
-            <PageButton link='/gen' name='gen'></PageButton>
+            <PageButton link='/' name='Home'></PageButton>
+            <PageButton link='/gen' name='Generate Cards'></PageButton>
+            <PageButton link='/FaynHome' name='Faynmen Technique'></PageButton>
         </div>
         </>
     );

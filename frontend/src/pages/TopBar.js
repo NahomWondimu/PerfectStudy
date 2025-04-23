@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
-function TopBar(){
+function TopBar(props){
     const [width, setWidth] = useState(window.innerWidth);
 
     useEffect(() => {
@@ -22,9 +23,13 @@ function TopBar(){
   
     return (<div style={boxStyle}>
         <h1 style={headerStyle}>
-            PerfectStudy
+            {props.name}
         </h1>
         </div>);
+}
+
+TopBar.propTypes = {
+  name:PropTypes.string
 }
 
 export default TopBar;
