@@ -1,8 +1,0 @@
-
-function FlashCardsAnswersPage(){
-
-    return(
-        <>
-        </>
-    );
-}

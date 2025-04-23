@@ -1,5 +1,5 @@
 
-function CardCreationPage(){
+function FlashCardView(){
 
     return(
         <>

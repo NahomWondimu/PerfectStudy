@@ -1,5 +1,5 @@
 
-function QRCodePage(){
+function GenCards(){
 
     return(
         <>
