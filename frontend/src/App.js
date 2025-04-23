@@ -1,16 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import GenCards from './pages/GenCards';
+import FaynmenHome from './pages/FaynemanHome';
 
 function App() {
   return (
     <>
-    
-        <div className="center">
-          <h1 className="header">PerfectStudy</h1>
-          
-        </div>
+      <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/gen" element={<GenCards />} />
+        <Route path= "/FaynHome" element={<FaynmenHome/>}/>
+      </Routes>
+    </Router>
     </>
-    
   );
 }
 
