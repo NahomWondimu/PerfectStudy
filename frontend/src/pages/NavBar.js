@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PageButton from './PageButton';
 
 function NavBar(){
 
@@ -14,15 +15,16 @@ function NavBar(){
         width: '200px',   // CSS values
         height: height * .855,
         backgroundColor: 'rgba(112, 180, 106, 0.8)',
-        transition: 'width 0s ease'
+        transition: 'width 0s ease',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start'
     };
 
     return(
         <>
         <div style = {box2Style}>
-            /*
-            add page buttons here
-            */
+            <PageButton link='/gen' name='gen'></PageButton>
         </div>
         </>
     );
