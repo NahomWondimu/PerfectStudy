@@ -12,7 +12,7 @@ function GenCards(){
     };
 
     const [file, setFile] = useState("");
-    const [flashCards, setFlashCards] = useState([])
+    const [flashCards, setFlashCards] = useState([{"Question": "What is 2 + 2", "Answer": "4"}])
 
     /*const returnFlashcardData = () => {
         if (flashCards) {
@@ -30,9 +30,8 @@ function GenCards(){
         body: formData
         })
 
-        const data = await response.json()
-        setFlashCards(data)
-
+        const data = await response.json();
+        setFlashCards(data);
         //returnFlashcardData()
         //{flashCards && flashCards.length > 0 ? <FlashCardView flashcards_input={flashCards}/> : null}
         
@@ -51,7 +50,7 @@ function GenCards(){
             <h3>Drop in a PDF to generate flashcards.</h3>
             <input type="file" onChange={e => setFile(e.target.files[0])}></input>
             <button form="post" onClick={sendFile}>Enter</button>
-            {flashCards && flashCards.length > 0 ? <FlashCardView flashcards_input={flashCards}/> : null}
+            {flashCards.length > 0 ? <FlashCardView flashcards_input={flashCards}/> : console.log(flashCards)}
             
 
           </div>

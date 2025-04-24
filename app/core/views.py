@@ -31,6 +31,7 @@ def index(request):
         for i in range(len(reader.pages)):
             text += reader.pages[i].extract_text()
         
+        print(text)
         json_data = getGeminiResponse(text)
     
         return JsonResponse(json_data, safe=False)

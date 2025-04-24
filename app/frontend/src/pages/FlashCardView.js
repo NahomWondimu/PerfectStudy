@@ -1,14 +1,18 @@
 import { useState } from "react";
 import Card from "../pages/Card";
 
-function FlashCardView( {flashcard_input} ){
+function FlashCardView( {flashcards_input} ){
     
     const [counter, setCounter] = useState(0);
 
     const [flip, setFlip] = useState(true);
 
     let flashcards;
-    flashcards = flashcard_input;
+    flashcards = flashcards_input;
+
+    if (flashcards_input === undefined || flashcards_input === null) {
+        return null;
+    }
 
     //console.log("Flashcards input", typeof flashcards_input);
 
