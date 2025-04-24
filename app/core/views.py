@@ -4,8 +4,15 @@ from google import genai
 import typing
 import json
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
+import os
+from dotenv import load_dotenv
+from django.http import HttpResponse, JsonResponse
+from PyPDF2 import PdfReader
+import io
 # Create your views here.
 
+load_dotenv()
 
 class FlashCard(typing.TypedDict):
     question: str
@@ -15,15 +22,24 @@ class FlashCard(typing.TypedDict):
 def index(request):
 
     if request.method == "POST":
-        content = request.FILES.get('file').read().decode("utf-8")
-        json_data = getGeminiResponse(content)
-        print(json_data)
+        text = ""
+        print(request.FILES.get('file'))
+        file = request.FILES.get('file')
+        reader = PdfReader(file)
+        content = request.FILES.get('file').read()
 
+        for i in range(len(reader.pages)):
+            text += reader.pages[i].extract_text()
+        
+        json_data = getGeminiResponse(text)
+    
+        return JsonResponse(json_data, safe=False)
+    
     return render(request, "index.html")
 
 def getGeminiResponse(content):
 
-    API_KEY = "AIzaSyC4Pv3TTv5D5hJXc2ilutfYqi_V5yqhmmA"
+    API_KEY = os.getenv("GEMINI_API_KEY")
     client = genai.Client(api_key=API_KEY)
     
     response = client.models.generate_content(
