@@ -1,5 +1,6 @@
-import TopBar from './TopBar.js';
-import NavBar from './NavBar.js';
+import TopBar from '../components/TopBar.js';
+import NavBar from '../components/NavBar.js';
+import FlashCardView from '../components/FlashCardView.js';
 import { useState } from 'react';
 import TextBoxInput from './TextBoxInput.js';
 import { useNavigate } from 'react-router-dom';

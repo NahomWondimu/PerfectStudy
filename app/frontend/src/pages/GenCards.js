@@ -1,6 +1,6 @@
-import TopBar from './TopBar.js';
-import NavBar from './NavBar.js';
-import FlashCardView from './FlashCardView.js';
+import TopBar from '../components/TopBar';
+import NavBar from '../components/NavBar';
+import FlashCardView from '../components/FlashCardView';
 import {useState} from "react";
 
 function GenCards(){
