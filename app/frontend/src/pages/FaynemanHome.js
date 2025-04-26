@@ -16,7 +16,11 @@ function FeynmenHome() {
     display: 'flex',
     flexDirection: 'column',
     height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100vh',
   };
+
 
   const contentStyle = {
     display: 'flex',
@@ -26,6 +30,7 @@ function FeynmenHome() {
     flex: 1,
     padding: '24px',
     backgroundColor: colors.secondary,
+    color: colors.accent,
   };
 
   const boxStyle = {
