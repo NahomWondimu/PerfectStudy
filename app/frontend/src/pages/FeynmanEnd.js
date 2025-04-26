@@ -15,15 +15,15 @@ function FeynmanEnd({ data }){
         <>
         <div>
             <h3>
-                {scores[0]}
+                Score: {scores[0]}
             </h3>
             <p>
-                {feedBack[0]}
+                Feedback: {feedBack[0]}
             </p>
         </div>
         <div>
         <h3>
-                {scores[1]}
+                Score: {scores[1]}
             </h3>
             <p>
                 {feedBack[1]}
@@ -31,7 +31,7 @@ function FeynmanEnd({ data }){
         </div>
         <div>
         <h3>
-                {scores[2]}
+                Score: {scores[2]}
             </h3>
             <p>
                 {feedBack[2]}

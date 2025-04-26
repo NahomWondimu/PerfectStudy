@@ -1,10 +1,10 @@
 import TopBar from '../components/TopBar.js';
-import NavBar from '../components/NavBar.js';
 import FlashCardView from '../components/FlashCardView.js';
 import { useState } from 'react';
 import TextBoxInput from './TextBoxInput.js';
 import { useNavigate } from 'react-router-dom';
 import FeynmanEnd from './FeynmanEnd.js';
+import { colors} from '../theme.js'
 
 function FaynmenHome(){
   const [count, setCount] = useState(0);
@@ -47,19 +47,16 @@ function FaynmenHome(){
   const contentStyle = {
     display: 'flex',
     flex: 1,
-  };
-    
-  const sidebarStyle = {
-    width: '200px',
-    backgroundColor: 'rgba(0, 128, 0, 0.5)',
+    backgroundColor: colors.secondary,
   };
 
   const mainContentStyle = {
-    flex: 1,
-    backgroundColor: '#fff',
-    padding: '20px',
-    color: '#000',
+    color: colors.accent,
   };
+
+  const buttonElem = {
+    color: colors.text,
+  }
 
   const sendData = async() => {
 
@@ -76,11 +73,6 @@ function FaynmenHome(){
       const data = await response.json()
 
       setGeneratedResponse(data);
-
-
-
-
-
   }
     
   return (
@@ -88,9 +80,6 @@ function FaynmenHome(){
       <div style={homepageStyle}>
         <TopBar name="Feynmen Technique" />
         <div style={contentStyle}>
-          <div style={sidebarStyle}>
-            <NavBar />
-          </div>
           <div style={mainContentStyle}>
             <form>
               <label>
@@ -100,27 +89,27 @@ function FaynmenHome(){
               <h3>Recite the topic as if you were explaining it to a..</h3>
               <div>
                 <label>
-                  Elementary School Student
+                  Explain this concept as if you were explaining it to an Elementary Schooler
                   <input type="text" onChange={e => setElementaryResponse(e.target.value)} required></input>
                 </label>
               </div>
               
               <div>
                 <label>
-                  Middle School Student
+                  Explain this concept as if you were explaining it to an Middle Schooler
                   <input type="text" onChange={e => setMiddleSchoolResponse(e.target.value)} required></input>
                 </label>
               </div>
               
               <div>
                 <label>
-                  High School Student
+                  Explain this concept as if you were explaining it to an High Schooler
                   <input type="text" onChange={e => setHighSchoolResponse(e.target.value)} required></input>
                 </label>
               </div>
               
 
-              <button form="post" type="submit" onClick={sendData}>Submit</button>
+              <button style={buttonElem} form="post" type="submit" onClick={sendData}>Submit</button>
             </form>
             
             {generatedResponse.length > 0 ? <FeynmanEnd data={generatedResponse}/> : null}
