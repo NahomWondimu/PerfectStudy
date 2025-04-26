@@ -18,7 +18,7 @@ function FeynmanEnd({ data }){
                 Score: {scores[0]}
             </h3>
             <p>
-                Feedback: {feedBack[0]}
+                {feedBack[0]}
             </p>
         </div>
         <div>

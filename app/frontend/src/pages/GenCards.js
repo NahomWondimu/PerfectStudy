@@ -49,8 +49,8 @@ function GenCards(){
           <TopBar name='Generate FlashCards'/>
           <div style={contentStyle}>
             <div style={mainContentStyle}>
-            <h3>Drop in a PDF to generate flashcards.</h3>
-            <input type="file" onChange={e => setFile(e.target.files[0])}></input>
+            <h3>Drop in a PDF or PPTX to generate flashcards.</h3>
+            <input type="file" onChange={e => setFile(e.target.files[0])} accept=".pdf,.pptx"></input>
             <button form="post" onClick={sendFile}>Enter</button>
             {flashCards.length > 0 ? <FlashCardView flashcards_input={flashCards}/> : console.log(flashCards)}
             </div>
