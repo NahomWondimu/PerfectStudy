@@ -1,3 +1,8 @@
+"""
+- Explain the concept
+- fix scoring for actual zeros
+    - if don't 
+"""
 from django.shortcuts import render
 #do pip install google-genai
 from google import genai
@@ -85,7 +90,8 @@ def feynman(request):
         str_builder += " Middle School Response: " + middleResponse
         str_builder += " High School Response: " + highResponse
 
-        prompt = "You will give 3 scores from 0-100 on how good the responses are based on how well it can be explained to the school level chosen by the user. Additionally, you will be giving your own feedback on how they can improve their responses for each of the school levels. It will be based on this data: " + str_builder
+        prompt = "Give 3 scores from 1-10 based on the user's response towards how they would explain it to an elementary schooler, middle schooler, and high schooler. Be critical about the scores. If their explanation based on the grade level isn't satisfactory, be critical with the score. Additionally, give feedback on how well the user explains it to a grade level. Give clues on how they can improve their response.  Also, make it sound like you're talking to the person, dont say the user. This is the data you will be evaluating: " + str_builder
+        #prompt = "You will give 3 scores from 0-10 on how good the responses are based on how well it can be explained to the school level chosen by the user. Additionally, you will be giving your own feedback on how they can improve their responses for each of the school levels. It will be based on this data: " + str_builder
 
         response = client.models.generate_content(
             model = "gemini-2.0-flash",
