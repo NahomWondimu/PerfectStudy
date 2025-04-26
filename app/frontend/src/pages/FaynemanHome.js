@@ -1,125 +1,160 @@
-import TopBar from '../components/TopBar.js';
-import FlashCardView from '../components/FlashCardView.js';
-import { useState } from 'react';
-import TextBoxInput from './TextBoxInput.js';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import TopBar from '../components/TopBar.js';
 import FeynmanEnd from './FeynmanEnd.js';
-import { colors} from '../theme.js'
+import { colors } from '../theme.js';
 
-function FaynmenHome(){
-  const [count, setCount] = useState(0);
-  
-  const [topic, setTopic] = useState("")
-  const [elementaryResponse, setElementaryResponse] = useState("")
-  const [middleSchoolResponse, setMiddleSchoolResponse] = useState("") 
-  const [highSchoolResponse, setHighSchoolResponse] = useState("")
-  const [generatedResponse, setGeneratedResponse] = useState([])
-
-  const nav = useNavigate();
-
-  const next = () => {
-    if(count < 5){
-      setCount(count + 1);
-    }
-  }
-
-  function renderInput(count) {
-    switch (count) {
-      case 0:
-        return <TextBoxInput prompt='prompt1' />;
-      case 1:
-        return <TextBoxInput prompt='prompt2' />;
-      case 2:
-        return <TextBoxInput prompt='prompt3' />;
-      case 3:
-        return <TextBoxInput prompt='prompt4' />;
-      default:
-        nav('/FeynEnd');
-    }
-  }
+function FeynmenHome() {
+  const [topic, setTopic] = useState('');
+  const [elementaryResponse, setElementaryResponse] = useState('');
+  const [middleSchoolResponse, setMiddleSchoolResponse] = useState('');
+  const [highSchoolResponse, setHighSchoolResponse] = useState('');
+  const [generatedResponse, setGeneratedResponse] = useState([]);
+  const navigate = useNavigate();
 
   const homepageStyle = {
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100vh',
   };
-    
+
   const contentStyle = {
     display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
     flex: 1,
+    padding: '24px',
     backgroundColor: colors.secondary,
   };
 
-  const mainContentStyle = {
-    color: colors.accent,
+  const boxStyle = {
+    width: '600px',
+    borderRadius: '12px',
+    backgroundColor: colors.accent,
+    padding: '32px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '16px',
+    color: colors.text,
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
   };
 
-  const buttonElem = {
-    color: colors.text,
-  }
+  const textBoxStyle = {
+    width: '100%',
+    padding: '8px 12px',
+    border: '1px solid #ccc',
+    borderRadius: '4px',
+    fontSize: '16px',
+  };
 
-  const sendData = async() => {
+  const buttonStyle = {
+    color: colors.buttonText,
+    width: '100%',
+    fontWeight: 500,
+    backgroundColor: colors.buttonBg,
+    padding: '0.75rem',
+    border: 'none',
+    borderRadius: '0.5rem',
+    cursor: 'pointer',
+    transition: 'background-color 0.2s',
+  };
 
-      const formData = new FormData()
-      formData.append('topic', topic)
-      formData.append('elementaryResponse', elementaryResponse)
-      formData.append('middleResponse', middleSchoolResponse)
-      formData.append('highResponse', highSchoolResponse)
-      const response = await fetch("http://127.0.0.1:8000/FeynHome", {
-          method: "POST",
-          body: formData
-      })
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('topic', topic);
+    formData.append('elementaryResponse', elementaryResponse);
+    formData.append('middleResponse', middleSchoolResponse);
+    formData.append('highResponse', highSchoolResponse);
 
-      const data = await response.json()
+    const response = await fetch('http://127.0.0.1:8000/FeynHome', {
+      method: 'POST',
+      body: formData,
+    });
+    const data = await response.json();
+    setGeneratedResponse(data);
+  };
 
-      setGeneratedResponse(data);
-  }
-    
   return (
-    <>
-      <div style={homepageStyle}>
-        <TopBar name="Feynmen Technique" />
-        <div style={contentStyle}>
-          <div style={mainContentStyle}>
-            <form>
-              <label>
-                Enter the topic you want to recall.
-                <input type="text" onChange={e => setTopic(e.target.value)} required></input>
-              </label>
-              <h3>Recite the topic as if you were explaining it to a..</h3>
-              <div>
-                <label>
-                  Explain this concept as if you were explaining it to an Elementary Schooler
-                  <input type="text" onChange={e => setElementaryResponse(e.target.value)} required></input>
-                </label>
-              </div>
-              
-              <div>
-                <label>
-                  Explain this concept as if you were explaining it to an Middle Schooler
-                  <input type="text" onChange={e => setMiddleSchoolResponse(e.target.value)} required></input>
-                </label>
-              </div>
-              
-              <div>
-                <label>
-                  Explain this concept as if you were explaining it to an High Schooler
-                  <input type="text" onChange={e => setHighSchoolResponse(e.target.value)} required></input>
-                </label>
-              </div>
-              
+    <div style={homepageStyle}>
+      <TopBar name="Feynman Technique" />
+      <div style={contentStyle}>
+        <div style={boxStyle}>
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <h3>Topic</h3>
+            <input
+              type="text"
+              style={textBoxStyle}
+              placeholder="E.g. Quantum Physics"
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+              required
+            />
 
-              <button style={buttonElem} form="post" type="submit" onClick={sendData}>Submit</button>
-            </form>
-            
-            {generatedResponse.length > 0 ? <FeynmanEnd data={generatedResponse}/> : null}
-            
-          </div>
+            <h3>Explain The Topic to...</h3>
+
+            <div>
+              <label htmlFor="elementaryschool">Elementary Schooler</label>
+              <textarea
+                id="elementaryschool"
+                style={textBoxStyle}
+                rows={3}
+                placeholder="Start typing here"
+                value={elementaryResponse}
+                onChange={(e) => setElementaryResponse(e.target.value)}
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="middleschool">Middle Schooler</label>
+              <textarea
+                id="middleschool"
+                style={textBoxStyle}
+                rows={3}
+                placeholder="Start typing here"
+                value={middleSchoolResponse}
+                onChange={(e) => setMiddleSchoolResponse(e.target.value)}
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="highschool">High Schooler</label>
+              <textarea
+                id="highschool"
+                style={textBoxStyle}
+                rows={3}
+                placeholder="Start typing here"
+                value={highSchoolResponse}
+                onChange={(e) => setHighSchoolResponse(e.target.value)}
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              style={buttonStyle}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = colors.buttonBg)}
+            >
+              Submit
+            </button>
+          </form>
         </div>
       </div>
-    </>
-  );
 
+      <div style={contentStyle}>
+          {generatedResponse.length > 0 && (
+            <div style={{ ...boxStyle, marginTop: '24px' }}>
+              <h3>Generated Explanation</h3>
+              <FeynmanEnd data={generatedResponse} />
+            </div>
+          )}
+      </div>
+    </div>
+  );
 }
 
-export default FaynmenHome;
+export default FeynmenHome;
