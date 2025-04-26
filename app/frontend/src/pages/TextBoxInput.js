@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from 'prop-types'
 
 function TextBoxInput(props){
-    const [textInput, setTextInput] = useState('Enter Explaination here');
+    const [textInput, setTextInput] = useState('Enter Explanation here');
 
     const submit = () => {
     }

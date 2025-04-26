@@ -1,14 +1,21 @@
 
-function FeynmanEnd(){
+function FeynmanEnd({ data }){
+    
+    if (data === undefined || data === null) {
+        return null;
+    }
 
-    const score = [100,100,100];
-    const feedBack = ['feedback1','feedback2','feedback3'];
+    console.log(data)
+
+    const scores = data.map(e => e.score)
+    const feedBack = data.map(e => e.response)
+
 
     return(
         <>
         <div>
             <h3>
-                {score[0]}
+                {scores[0]}
             </h3>
             <p>
                 {feedBack[0]}
@@ -16,7 +23,7 @@ function FeynmanEnd(){
         </div>
         <div>
         <h3>
-                {score[1]}
+                {scores[1]}
             </h3>
             <p>
                 {feedBack[1]}
@@ -24,7 +31,7 @@ function FeynmanEnd(){
         </div>
         <div>
         <h3>
-                {score[2]}
+                {scores[2]}
             </h3>
             <p>
                 {feedBack[2]}
