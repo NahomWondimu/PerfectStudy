@@ -85,7 +85,7 @@ def feynman(request):
         str_builder += " Middle School Response: " + middleResponse
         str_builder += " High School Response: " + highResponse
 
-        prompt = "You will give 3 scores from 0-100 based on how good the responses are based on the topic chosen by the user. Additionally, you will be giving your own feedback on how they can improve their responses for each of the categories. It will be based on this data: " + str_builder
+        prompt = "You will give 3 scores from 0-100 on how good the responses are based on how well it can be explained to the school level chosen by the user. Additionally, you will be giving your own feedback on how they can improve their responses for each of the school levels. It will be based on this data: " + str_builder
 
         response = client.models.generate_content(
             model = "gemini-2.0-flash",
@@ -109,7 +109,7 @@ def getGeminiResponse(content):
     response = client.models.generate_content(
 
         model="gemini-2.0-flash", 
-        contents="Create 5 short flashcards using content from this document: " + content,
+        contents="Create 10 short flashcards using content from this document: " + content,
         config = {
             'response_mime_type': 'application/json',
             'response_schema': list[FlashCard]

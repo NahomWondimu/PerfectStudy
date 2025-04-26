@@ -58,6 +58,7 @@ function FeynmanEnd({ data }){
 
     return(
         <>
+<<<<<<< HEAD
         <div
             style={{
             backgroundColor: colors.accent,
@@ -70,6 +71,14 @@ function FeynmanEnd({ data }){
             <h3 style={{ color: colors.primary, margin: 0 }}>Score: {scores[0]}</h3>
             <p style={{ color: colors.text, marginTop: "0.5rem" }}>
             Feedback: {feedBack[0]}
+=======
+        <div>
+            <h3>
+                Score: {scores[0]}
+            </h3>
+            <p>
+                {feedBack[0]}
+>>>>>>> d3eb6269e024e25320c97e1adc6994a50fae45ce
             </p>
         </div>
         <div
