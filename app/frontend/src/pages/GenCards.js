@@ -96,7 +96,7 @@ function GenCards() {
 
           <input
             type="file"
-            accept=".pdf"
+            accept=".pdf, .pptx"
             style={inputStyle}
             onChange={(e) => setFile(e.target.files[0])}
           />
