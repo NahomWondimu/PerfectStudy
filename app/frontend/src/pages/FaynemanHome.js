@@ -10,17 +10,12 @@ function FeynmenHome() {
   const [middleSchoolResponse, setMiddleSchoolResponse] = useState('');
   const [highSchoolResponse, setHighSchoolResponse] = useState('');
   const [generatedResponse, setGeneratedResponse] = useState([]);
-  const navigate = useNavigate();
 
   const homepageStyle = {
     display: 'flex',
     flexDirection: 'column',
     height: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100vh',
   };
-
 
   const contentStyle = {
     display: 'flex',
@@ -30,7 +25,6 @@ function FeynmenHome() {
     flex: 1,
     padding: '24px',
     backgroundColor: colors.secondary,
-    color: colors.accent,
   };
 
   const boxStyle = {
@@ -42,7 +36,8 @@ function FeynmenHome() {
     flexDirection: 'column',
     gap: '16px',
     color: colors.text,
-    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+    textAlign: 'left',
   };
 
   const textBoxStyle = {
@@ -84,6 +79,8 @@ function FeynmenHome() {
   return (
     <div style={homepageStyle}>
       <TopBar name="Feynman Technique" />
+
+      {/* Form Bubble */}
       <div style={contentStyle}>
         <div style={boxStyle}>
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -150,14 +147,15 @@ function FeynmenHome() {
         </div>
       </div>
 
-      <div style={contentStyle}>
-          {generatedResponse.length > 0 && (
-            <div style={{ ...boxStyle, marginTop: '24px' }}>
-              <h3>Generated Explanation</h3>
-              <FeynmanEnd data={generatedResponse} />
-            </div>
-          )}
-      </div>
+      {/* Result Bubble */}
+      {generatedResponse.length > 0 && (
+        <div style={contentStyle}>
+          <div style={{ ...boxStyle, marginTop: '24px' }}>
+            <h3>Generated Explanation</h3>
+            <FeynmanEnd data={generatedResponse} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
