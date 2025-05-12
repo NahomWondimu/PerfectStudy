@@ -47,7 +47,8 @@ coverage.xml
 **/.pnp
 **/.pnp.js
 **/coverage/
-**/build/
+**/build/css/
+**/build/js/
 
 # npm/yarn debug logs
 npm-debug.log*
